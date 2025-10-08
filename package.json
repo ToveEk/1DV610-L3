@@ -1,6 +1,7 @@
 {
   "name": "1dv610-l3",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -23,6 +24,7 @@
   },
   "dependencies": {
     "1dv610-l2": "github:ToveEk/1dv610-l2",
+    "dotenv": "^17.2.3",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-ejs-layouts": "^2.5.1",

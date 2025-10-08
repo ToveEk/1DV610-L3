@@ -1,0 +1,24 @@
+{
+  "name": "1dv610-l3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ToveEk/1DV610-L3.git"
+  },
+  "author": "Tove Ek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ToveEk/1DV610-L3/issues"
+  },
+  "homepage": "https://github.com/ToveEk/1DV610-L3#readme",
+  "devDependencies": {
+    "prettier": "3.6.2",
+    "eslint": "^9.37.0"
+  }
+}

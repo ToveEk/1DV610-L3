@@ -7,7 +7,7 @@
  */
 
 export class HomeController {
-    index (req, res) {
+    renderHomePage(req, res) {
         res.render('home/home')
     }
 }

@@ -14,5 +14,5 @@ const homeController = new HomeController()
 export const homeRouter = express.Router()
 
 homeRouter.get('/', (req, res) => {
-  homeController.index(req, res)
+  homeController.renderHomePage(req, res)
 })

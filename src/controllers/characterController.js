@@ -7,8 +7,8 @@
  */
 
 export class CharacterController {
-    renderCharacterCreatorPage(req, res) {
-        res.render('characterCreator/characterCreator')
+    renderCharacterNamePage(req, res) {
+        res.render('characterCreator/name')
     }
 
     createCharacter(req, res) {

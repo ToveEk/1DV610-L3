@@ -14,5 +14,5 @@ const characterController = new CharacterController()
 export const characterRouter = express.Router()
 
 characterRouter.get('/', (req, res) => {
-  characterController.characterCreator(req, res)
+  characterController.renderCharacterNamePage(req, res)
 })

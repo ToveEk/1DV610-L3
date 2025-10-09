@@ -1,3 +1,11 @@
+/**
+ * Server setup and configuration.
+ * 
+ * @module server
+ * @author Tove Ek
+ * @version 1.0.0
+ */
+
 import express from 'express'
 import expressLayouts from 'express-ejs-layouts'
 import path from 'path'

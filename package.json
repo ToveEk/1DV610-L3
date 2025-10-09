@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/ToveEk/1DV610-L3#readme",
   "devDependencies": {
-    "eslint": "^9.37.0",
+    "@lnu/eslint-config": "^1.1.10",
+    "eslint": "^8.57.1",
     "prettier": "3.6.2"
   },
   "dependencies": {

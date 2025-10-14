@@ -1,6 +1,6 @@
 /**
  * Server setup and configuration.
- * 
+ *
  * @module server
  * @author Tove Ek
  * @version 1.0.0
@@ -8,9 +8,8 @@
 
 import express from 'express'
 import expressLayouts from 'express-ejs-layouts'
-import path from 'path'
+import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
-import { dirname } from 'path'
 import { router } from './routes/router.js'
 import httpContext from 'express-http-context'
 import dotenv from 'dotenv'
@@ -32,6 +31,7 @@ try {
 
   // Middleware to parse URL-encoded bodies
   const directoryFullName = dirname(fileURLToPath(import.meta.url))
+  app.use(express.urlencoded({ extended: true }))
 
   // Apply ejs layouts, set view engine and static files
   app.set('view engine', 'ejs')

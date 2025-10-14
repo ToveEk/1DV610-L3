@@ -6,6 +6,8 @@
  * @version 1.0.0
  */
 
+import { Character } from '../models/characterModel.js'
+
 /**
  * The CharacterController class.
  */
@@ -21,23 +23,32 @@ export class CharacterController {
   }
 
   /**
-   * Creates a new character.
-   *
-   * @param {object} req - The request object
-   * @param {object} res - The response object
-   */
-  createCharacter (req, res) {
-    // anropar metoderna nedan för att skapa karaktären
-  }
-
-  /**
    * Handles adding the character's name.
    *
    * @param {object} req - The request object
    * @param {object} res - The response object
    */
   addCharacterName (req, res) {
-    // ta emot namndata från formuläret
+    // spara namnet i characterObject
+    // redirecta till nästa vy (species)
+
+    const newCharacter = new Character(
+      req.body.characterName
+    )
+
+    console.log('New character created: ', newCharacter)
+
+    this.renderCharacterSpeciesPage(req, res)
+  }
+
+  /**
+   * Renders the character species input page.
+   *
+   * @param {object} req - The request object
+   * @param {object} res - The response object
+   */
+  renderCharacterSpeciesPage (req, res) {
+    res.render('characterCreator/species')
   }
 
   /**
@@ -51,6 +62,16 @@ export class CharacterController {
   }
 
   /**
+   * Renders the character class input page.
+   *
+   * @param {object} req - The request object
+   * @param {object} res - The response object
+   */
+  renderCharacterClassPage (req, res) {
+    res.render('characterCreator/class')
+  }
+
+  /**
    * Handles adding the character's class.
    *
    * @param {object} req - The request object
@@ -61,6 +82,16 @@ export class CharacterController {
   }
 
   /**
+   * Renders the character abilities input page.
+   *
+   * @param {object} req - The request object
+   * @param {object} res - The response object
+   */
+  renderCharacterAbilitiesPage (req, res) {
+    res.render('characterCreator/abilities')
+  }
+
+  /**
    * Handles adding the character's abilities.
    *
    * @param {object} req - The request object
@@ -68,5 +99,15 @@ export class CharacterController {
    */
   addCharacterAbilities (req, res) {
     // ta emot attributdata från formuläret
+  }
+
+  /**
+   * Renders the character summary page.
+   *
+   * @param {object} req - The request object
+   * @param {object} res - The response object
+   */
+  renderCharacterSummaryPage (req, res) {
+    res.render('characterCreator/summary')
   }
 }

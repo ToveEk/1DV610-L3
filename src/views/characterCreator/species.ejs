@@ -1,2 +1,23 @@
 <h1>Pick a Species</h1>
 <h2>Or roll a <button id="rollSpeciesButton">d8</button> to randomly select one!</h2>
+<form action="/character-species" method="POST">
+    <input type="hidden" id="selectedSpeciesInput" name="selectedSpecies" value="">
+    <ul>
+        <% speciesList.forEach(species=> { %>
+            <li>
+                <h3>
+                    <%= species.name %>
+                </h3>
+                <p>
+                    <%= species.description %>
+                </p>
+                <p>
+                    <%= JSON.stringify(species.bonuses) %> <!-- snygga till -->
+                </p>
+                <button class="select-species-button">Select <%=species.name %></button>
+            </li>
+            <% }) %>
+    </ul>
+</form>
+
+<!-- varje species ska få en bild med -->

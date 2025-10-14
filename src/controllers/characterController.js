@@ -7,11 +7,19 @@
  */
 
 import { Character } from '../models/characterModel.js'
+import { speciesList } from '../data/speciesData.js'
 
 /**
  * The CharacterController class.
  */
 export class CharacterController {
+  /**
+   * Creates an instance of the CharacterController.
+   */
+  constructor () {
+    this.character = new Character()
+  }
+
   /**
    * Renders the character name input page.
    *
@@ -29,14 +37,9 @@ export class CharacterController {
    * @param {object} res - The response object
    */
   addCharacterName (req, res) {
-    // spara namnet i characterObject
-    // redirecta till nästa vy (species)
+    this.character.name = req.body.characterName
 
-    const newCharacter = new Character(
-      req.body.characterName
-    )
-
-    console.log('New character created: ', newCharacter)
+    console.log('New character created: ', this.character)
 
     this.renderCharacterSpeciesPage(req, res)
   }
@@ -48,7 +51,7 @@ export class CharacterController {
    * @param {object} res - The response object
    */
   renderCharacterSpeciesPage (req, res) {
-    res.render('characterCreator/species')
+    res.render('characterCreator/species', { speciesList: Object.values(speciesList) })
   }
 
   /**
@@ -58,7 +61,11 @@ export class CharacterController {
    * @param {object} res - The response object
    */
   addCharacterSpecies (req, res) {
-    // ta emot rasdata från formuläret
+    this.character.species = req.body.characterSpecies
+
+    console.log('Character species added: ', this.character.species)
+
+    this.renderCharacterClassPage(req, res)
   }
 
   /**
@@ -68,7 +75,7 @@ export class CharacterController {
    * @param {object} res - The response object
    */
   renderCharacterClassPage (req, res) {
-    res.render('characterCreator/class')
+    res.render('characterCreator/classes')
   }
 
   /**

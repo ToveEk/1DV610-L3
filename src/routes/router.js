@@ -1,6 +1,6 @@
 /**
  * Main router that combines all sub-routers.
- * 
+ *
  * @module routes/router
  * @author Tove Ek
  * @version 1.0.0

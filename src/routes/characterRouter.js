@@ -1,6 +1,6 @@
 /**
  * CharacterRouter defines routes for character-related endpoints.
- * 
+ *
  * @module routes/characterRouter
  * @author Tove Ek
  * @version 1.0.0

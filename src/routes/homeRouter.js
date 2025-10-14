@@ -1,6 +1,6 @@
 /**
  * HomeRouter defines routes for home-related endpoints.
- * 
+ *
  * @module routes/homeRouter
  * @author Tove Ek
  * @version 1.0.0

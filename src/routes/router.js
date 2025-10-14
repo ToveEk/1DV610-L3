@@ -13,4 +13,4 @@ import { characterRouter } from './characterRouter.js'
 export const router = express.Router()
 
 router.use('/', homeRouter)
-router.use('/character-creator', characterRouter)
+router.use('/', characterRouter)

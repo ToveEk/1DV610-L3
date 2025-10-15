@@ -24,7 +24,7 @@
     "prettier": "3.6.2"
   },
   "dependencies": {
-    "1dv610-l2": "github:ToveEk/1dv610-l2",
+    "dice-module": "github:ToveEk/DiceModule",
     "dotenv": "^17.2.3",
     "ejs": "^3.1.10",
     "express": "^5.1.0",

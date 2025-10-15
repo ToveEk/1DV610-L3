@@ -1,2 +1,27 @@
 <h1>Pick a Class</h1>
 <h2>Or roll a <button id="rollClassButton">d12</button> to randomly select one!</h2>
+<!-- koppla till modulens tärningslogik genom script -->
+
+<form action="/character-class" method="POST">
+    <ul>
+        <% classList.forEach(characterClass=> { %>
+            <li>
+                <h3>
+                    <%= characterClass.name %>
+                </h3>
+                <p>
+                    <%= characterClass.description %>
+                </p>
+                <p>
+                    Primary Ability: <%= characterClass.primaryAbility %>
+                </p>
+                <button type="submit" class="select-class-button" name="characterClass"
+                    value="<%= characterClass.name %>">Select
+                    <%= characterClass.name %>
+                </button>
+            </li>
+            <% }) %>
+    </ul>
+</form>
+
+<!-- varje class ska få en bild -->

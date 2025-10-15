@@ -61,9 +61,11 @@ export class CharacterController {
    * @param {object} res - The response object
    */
   addCharacterSpecies (req, res) {
+    console.log('Received species: ', req.body.characterSpecies)
+
     this.character.species = req.body.characterSpecies
 
-    console.log('Character species added: ', this.character.species)
+    console.log('Current character: ', this.character)
 
     this.renderCharacterClassPage(req, res)
   }
@@ -118,3 +120,5 @@ export class CharacterController {
     res.render('characterCreator/summary')
   }
 }
+
+// TODO: private validation methods for each step?

@@ -7,6 +7,7 @@
  */
 
 const dragonborn = {
+  name: 'Dragonborn',
   bonuses: {
     strength: 2,
     charisma: 1
@@ -15,6 +16,7 @@ const dragonborn = {
 }
 
 const dwarf = {
+  name: 'Dwarf',
   bonuses: {
     constitution: 2,
     wisdom: 1
@@ -23,6 +25,7 @@ const dwarf = {
 }
 
 const elf = {
+  name: 'Elf',
   bonuses: {
     dexterity: 2,
     wisdom: 1
@@ -31,6 +34,7 @@ const elf = {
 }
 
 const gnome = {
+  name: 'Gnome',
   bonuses: {
     intelligence: 2,
     constitution: 1
@@ -39,6 +43,7 @@ const gnome = {
 }
 
 const halfling = {
+  name: 'Halfling',
   bonuses: {
     dexterity: 2,
     charisma: 1
@@ -47,6 +52,7 @@ const halfling = {
 }
 
 const human = {
+  name: 'Human',
   bonuses: {
     strength: 1,
     dexterity: 1,
@@ -59,6 +65,7 @@ const human = {
 }
 
 const orc = {
+  name: 'Orc',
   bonuses: {
     strength: 2,
     constitution: 1
@@ -67,6 +74,7 @@ const orc = {
 }
 
 const tiefling = {
+  name: 'Tiefling',
   bonuses: {
     charisma: 2,
     intelligence: 1

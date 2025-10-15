@@ -8,6 +8,7 @@
 
 import { Character } from '../models/characterModel.js'
 import { speciesList } from '../data/speciesData.js'
+import { classList } from '../data/classData.js'
 
 /**
  * The CharacterController class.
@@ -77,7 +78,7 @@ export class CharacterController {
    * @param {object} res - The response object
    */
   renderCharacterClassPage (req, res) {
-    res.render('characterCreator/classes')
+    res.render('characterCreator/classes', { classList: Object.values(classList) })
   }
 
   /**
@@ -87,7 +88,13 @@ export class CharacterController {
    * @param {object} res - The response object
    */
   addCharacterClass (req, res) {
-    // ta emot klassdata från formuläret
+    console.log('Received class: ', req.body.characterClass)
+
+    this.character.className = req.body.characterClass
+
+    console.log('Current character: ', this.character)
+
+    this.renderCharacterAbilitiesPage(req, res)
   }
 
   /**

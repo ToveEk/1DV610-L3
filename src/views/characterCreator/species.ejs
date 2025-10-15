@@ -4,7 +4,6 @@
 <!-- genom eventlistener och ett script? -->
 
 <form action="/character-species" method="POST">
-    <input type="hidden" id="selectedSpeciesInput" name="selectedSpecies" value="">
     <ul>
         <% speciesList.forEach(species=> { %>
             <li>
@@ -15,9 +14,14 @@
                     <%= species.description %>
                 </p>
                 <p>
-                    <%= JSON.stringify(species.bonuses) %> <!-- snygga till -->
+                    <% for (const [key, values] of Object.entries(species.bonuses)) { %>
+                        <strong>
+                            <%= key %> +<%= values %>
+                        </strong><br>
+                        <% } %>
                 </p>
-                <button class="select-species-button">Select <%=species.name %></button>
+                <button type="submit" class="select-species-button" name="characterSpecies"
+                    value="<%= species.name %>">Select <%= species.name %></button>
             </li>
             <% }) %>
     </ul>

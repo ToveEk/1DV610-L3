@@ -12,7 +12,8 @@ const dragonborn = {
     strength: 2,
     charisma: 1
   },
-  description: 'Dragonborn are proud, strong, and honorable warriors with draconic ancestry.'
+  description: 'Dragonborn are proud, strong, and honorable warriors with draconic ancestry.',
+  randomRollValue: 1
 }
 
 const dwarf = {
@@ -21,7 +22,8 @@ const dwarf = {
     constitution: 2,
     wisdom: 1
   },
-  description: 'Dwarves are sturdy and resilient, known for their craftsmanship and combat skills.'
+  description: 'Dwarves are sturdy and resilient, known for their craftsmanship and combat skills.',
+  randomRollValue: 2
 }
 
 const elf = {
@@ -30,7 +32,8 @@ const elf = {
     dexterity: 2,
     wisdom: 1
   },
-  description: 'Elves are agile and graceful, with keen senses and a deep connection to nature.'
+  description: 'Elves are agile and graceful, with keen senses and a deep connection to nature.',
+  randomRollValue: 3
 }
 
 const gnome = {
@@ -39,7 +42,8 @@ const gnome = {
     intelligence: 2,
     constitution: 1
   },
-  description: 'Gnomes are small and clever, known for their inventiveness and affinity for magic.'
+  description: 'Gnomes are small and clever, known for their inventiveness and affinity for magic.',
+  randomRollValue: 4
 }
 
 const halfling = {
@@ -48,7 +52,8 @@ const halfling = {
     dexterity: 2,
     charisma: 1
   },
-  description: 'Halflings are small and nimble, known for their stealth and luck.'
+  description: 'Halflings are small and nimble, known for their stealth and luck.',
+  randomRollValue: 5
 }
 
 const human = {
@@ -61,7 +66,8 @@ const human = {
     wisdom: 1,
     charisma: 1
   },
-  description: 'Humans are the most adaptable and ambitious people among the common races.'
+  description: 'Humans are the most adaptable and ambitious people among the common races.',
+  randomRollValue: 6
 }
 
 const orc = {
@@ -70,7 +76,8 @@ const orc = {
     strength: 2,
     constitution: 1
   },
-  description: 'Orcs are strong and aggressive, known for their ferocity in battle.'
+  description: 'Orcs are strong and aggressive, known for their ferocity in battle.',
+  randomRollValue: 7
 }
 
 const tiefling = {
@@ -79,7 +86,8 @@ const tiefling = {
     charisma: 2,
     intelligence: 1
   },
-  description: 'Tieflings are charismatic and cunning, with infernal heritage that grants them unique abilities.'
+  description: 'Tieflings are charismatic and cunning, with infernal heritage that grants them unique abilities.',
+  randomRollValue: 8
 }
 
 export const speciesList = [dragonborn, dwarf, elf, gnome, halfling, human, orc, tiefling]

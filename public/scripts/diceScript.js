@@ -7,10 +7,28 @@
  * @version 1.0.0
  */
 
-import * as DiceModule from 'DiceModule'
+import { Dice } from '../scripts/dice-module/dice.js'
 
-const diceRoller = new DiceModule.Dice()
+document.addEventListener('DOMContentLoaded', () => {
+  const diceRoller = new Dice()
 
-// diceRoller.startRolling('d8')
+  // TODO: Add event listeners to buttons and update the UI with roll results
+  // matcha resultatet med species randomRollValue och class randomRollValue
 
-// TODO: Add event listeners to buttons and update the UI with roll results
+  document.getElementById('rollSpeciesButton').addEventListener('click', () => {
+    const rollResult = diceRoller.startRolling('d8')
+    console.log('Rolled a d8 for species:', rollResult)
+
+    // matcha resultatet med species randomRollValue
+
+
+    if (selectedSpecies) {
+      console.log('Selected species:', selectedSpecies.name)
+      // Uppdatera UI eller skicka data till servern som behövs
+    } else {
+      console.log('No species matches the roll result.')
+    }
+  })
+})
+
+// SKIT I DETTA KÖR PÅ BACKEND ISTÄLLET

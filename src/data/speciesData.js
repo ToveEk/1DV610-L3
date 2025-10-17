@@ -100,7 +100,7 @@ export class SpeciesData {
   }
 
   /**
-   * Returns the list of all species.
+   * Returns the list of all character species.
    *
    * @returns {Array} - The list of all species.
    */
@@ -117,8 +117,3 @@ export class SpeciesData {
     ]
   }
 }
-
-// används för att visa information om arter i species view
-// också för att applicera artens bonusar på attributpoäng vid rullning av ability scores
-// också för att kunna jämföra vilka species som passar till vilka klasser (bara för spelarens skull i denna version av appen)
-// spelaren behöver inte välja art baserat på klass

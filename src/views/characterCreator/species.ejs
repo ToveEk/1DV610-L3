@@ -1,10 +1,15 @@
 <h1>Pick a Species</h1>
-<h2>Or roll a <button id="rollSpeciesButton">d8</button> to randomly select one!</h2>
-<script src="/scripts/diceScript.js" type="module"></script>
+
+<form action="/character-species" method="POST">
+    <h2>Or roll a d8 to randomly select one!</h2>
+    <button type="submit" id="rollSpeciesButton" value="d8" name="diceNotation">d8</button>
+</form>
+
+<p id="speciesRollResult"></p>
 
 <form action="/character-species" method="POST">
     <ul>
-        <% speciesList.forEach(species => { %>
+        <% speciesList.forEach(species=> { %>
             <li>
                 <h3>
                     <%= species.name %>

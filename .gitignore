@@ -139,4 +139,4 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 # Ignore copied local copy of dice-module source used for client
-public/scripts/dice-module/
+src/modules/dice-module/

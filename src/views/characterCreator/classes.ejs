@@ -1,6 +1,9 @@
 <h1>Pick a Class</h1>
-<h2>Or roll a <button id="rollClassButton">d12</button> to randomly select one!</h2>
-<!-- koppla till modulens tärningslogik genom script -->
+<h2>Or roll a d12 to randomly select one!</h2>
+
+<form action="/character-class" method="POST">
+    <button type="submit" id="rollClassButton" value="d12" name="diceNotation">d12</button>
+</form>
 
 <form action="/character-class" method="POST">
     <ul>

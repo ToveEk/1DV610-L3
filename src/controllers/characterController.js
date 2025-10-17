@@ -8,7 +8,8 @@
 
 import { Character } from '../models/characterModel.js'
 import { SpeciesData } from '../data/speciesData.js'
-import { classList } from '../data/classData.js'
+import { ClassData } from '../data/classData.js'
+import { DiceController } from './diceController.js'
 
 /**
  * The CharacterController class.
@@ -20,6 +21,8 @@ export class CharacterController {
   constructor () {
     this.character = new Character()
     this.speciesData = new SpeciesData()
+    this.classData = new ClassData()
+    this.diceController = new DiceController()
   }
 
   /**
@@ -64,10 +67,9 @@ export class CharacterController {
    */
   addCharacterSpecies (req, res) {
     console.log('Received species: ', req.body.characterSpecies)
-    console.log('Recieved d8 result: ', req.body.d8Result)
 
-    if (req.body.d8Result) {
-      this.#randomRollForSpecies(req, res)
+    if (req.body.diceNotation) {
+      this.#addRandomCharacterSpecies(req, res)
     } else {
       this.character.species = req.body.characterSpecies
 
@@ -80,25 +82,21 @@ export class CharacterController {
   /**
    * Handles random species selection based on d8 roll result.
    *
+   * @param {number} rollResult - The result of the dice roll
    * @param {object} req - The request object
    * @param {object} res - The response object
    */
-  #randomRollForSpecies (req, res) {
+  #addRandomCharacterSpecies (rollResult, req, res) {
     const speciesList = this.speciesData.getSpeciesList()
     const speciesRandomRollValues = speciesList.map(species => species.randomRollValue)
 
-    console.log('Species random roll values: ', speciesRandomRollValues)
-
-    const d8Result = parseInt(req.body.d8Result)
-
-    if (speciesRandomRollValues.includes(d8Result)) {
-      const selectedSpecies = speciesList.find(species => species.randomRollValue === d8Result)
-      this.character.species = selectedSpecies.name
-      console.log('Matched species:', selectedSpecies.name)
-    } else {
-      console.log('No species matches the roll result. Try again')
+    if (!speciesRandomRollValues.includes(rollResult)) {
+      console.log('Roll result doesn\'t match any species random roll value. Trying again...')
       res.redirect('/character-species')
       return
+    } else {
+      const selectedSpecies = speciesList.find(species => species.randomRollValue === rollResult)
+      this.character.species = selectedSpecies.name
     }
 
     console.log('Selected species: ', this.character.species)
@@ -114,7 +112,7 @@ export class CharacterController {
    * @param {object} res - The response object
    */
   renderCharacterClassPage (req, res) {
-    res.render('characterCreator/classes', { classList: Object.values(classList) })
+    res.render('characterCreator/classes', { classList: this.classData.getClassList() })
   }
 
   /**
@@ -126,8 +124,38 @@ export class CharacterController {
   addCharacterClass (req, res) {
     console.log('Received class: ', req.body.characterClass)
 
-    this.character.className = req.body.characterClass
+    if (req.body.diceNotation) {
+      this.#addRandomCharacterClass(req, res)
+    } else {
+      this.character.className = req.body.characterClass
 
+      console.log('Current character: ', this.character)
+
+      this.renderCharacterAbilitiesPage(req, res)
+    }
+  }
+
+  /**
+   * Handles random class selection based on d12 roll result.
+   *
+   * @param {number} rollResult - The result of the dice roll
+   * @param {object} req - The request object
+   * @param {object} res - The response object
+   */
+  #addRandomCharacterClass (rollResult, req, res) {
+    const classList = this.classData.getClassList()
+    const classRandomRollValues = classList.map(className => className.randomRollValue)
+
+    if (!classRandomRollValues.includes(rollResult)) {
+      console.log('Roll result doesn\'t match any class random roll value. Trying again...')
+      res.redirect('/character-class')
+      return
+    } else {
+      const selectedClass = classList.find(className => className.randomRollValue === rollResult)
+      this.character.className = selectedClass.name
+    }
+
+    console.log('Selected class: ', this.character.className)
     console.log('Current character: ', this.character)
 
     this.renderCharacterAbilitiesPage(req, res)
@@ -161,6 +189,31 @@ export class CharacterController {
    */
   renderCharacterSummaryPage (req, res) {
     res.render('characterCreator/summary')
+  }
+
+  /**
+   * Handles random selection based on dice notation.
+   *
+   * @param {object} req - The request object
+   * @param {object} res - The response object
+   */
+  #handleRandomSelection (req, res) {
+    const diceNotation = req.body.diceNotation
+
+    this.diceController.rollDice(diceNotation)
+
+    const rollResult = this.diceController.rollResult
+
+    if (diceNotation === 'd8') {
+      this.#addRandomCharacterSpecies(rollResult, req, res)
+    } else if (diceNotation === 'd12') {
+      this.#addRandomCharacterClass(rollResult, req, res)
+    } else if (diceNotation === 'd20') {
+      // handle ability selection
+    } else {
+      console.log('Invalid dice notation for random selection.')
+      res.redirect('/character-name')
+    }
   }
 }
 

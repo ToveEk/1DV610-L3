@@ -7,7 +7,7 @@
  */
 
 import { Character } from '../models/characterModel.js'
-import { speciesList } from '../data/speciesData.js'
+import { SpeciesData } from '../data/speciesData.js'
 import { classList } from '../data/classData.js'
 
 /**
@@ -19,10 +19,11 @@ export class CharacterController {
    */
   constructor () {
     this.character = new Character()
+    this.speciesData = new SpeciesData()
   }
 
   /**
-   * Renders the character name input page.
+   * Renders the character name page.
    *
    * @param {object} req - The request object
    * @param {object} res - The response object
@@ -46,13 +47,13 @@ export class CharacterController {
   }
 
   /**
-   * Renders the character species input page.
+   * Renders the character species page.
    *
    * @param {object} req - The request object
    * @param {object} res - The response object
    */
   renderCharacterSpeciesPage (req, res) {
-    res.render('characterCreator/species', { speciesList: Object.values(speciesList) })
+    res.render('characterCreator/species', { speciesList: this.speciesData.getSpeciesList() })
   }
 
   /**
@@ -63,16 +64,51 @@ export class CharacterController {
    */
   addCharacterSpecies (req, res) {
     console.log('Received species: ', req.body.characterSpecies)
+    console.log('Recieved d8 result: ', req.body.d8Result)
 
-    this.character.species = req.body.characterSpecies
+    if (req.body.d8Result) {
+      this.#randomRollForSpecies(req, res)
+    } else {
+      this.character.species = req.body.characterSpecies
 
+      console.log('Current character: ', this.character)
+
+      this.renderCharacterClassPage(req, res)
+    }
+  }
+
+  /**
+   * Handles random species selection based on d8 roll result.
+   *
+   * @param {object} req - The request object
+   * @param {object} res - The response object
+   */
+  #randomRollForSpecies (req, res) {
+    const speciesList = this.speciesData.getSpeciesList()
+    const speciesRandomRollValues = speciesList.map(species => species.randomRollValue)
+
+    console.log('Species random roll values: ', speciesRandomRollValues)
+
+    const d8Result = parseInt(req.body.d8Result)
+
+    if (speciesRandomRollValues.includes(d8Result)) {
+      const selectedSpecies = speciesList.find(species => species.randomRollValue === d8Result)
+      this.character.species = selectedSpecies.name
+      console.log('Matched species:', selectedSpecies.name)
+    } else {
+      console.log('No species matches the roll result. Try again')
+      res.redirect('/character-species')
+      return
+    }
+
+    console.log('Selected species: ', this.character.species)
     console.log('Current character: ', this.character)
 
     this.renderCharacterClassPage(req, res)
   }
 
   /**
-   * Renders the character class input page.
+   * Renders the character class page.
    *
    * @param {object} req - The request object
    * @param {object} res - The response object
@@ -98,7 +134,7 @@ export class CharacterController {
   }
 
   /**
-   * Renders the character abilities input page.
+   * Renders the character abilities page.
    *
    * @param {object} req - The request object
    * @param {object} res - The response object

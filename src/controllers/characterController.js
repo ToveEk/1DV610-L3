@@ -69,7 +69,8 @@ export class CharacterController {
     console.log('Received species: ', req.body.characterSpecies)
 
     if (req.body.diceNotation) {
-      this.#addRandomCharacterSpecies(req, res)
+      // delegate to handler that computes the rollResult and calls the correct private adders
+      this.#handleRandomSelection(req, res)
     } else {
       this.character.species = req.body.characterSpecies
 
@@ -125,7 +126,8 @@ export class CharacterController {
     console.log('Received class: ', req.body.characterClass)
 
     if (req.body.diceNotation) {
-      this.#addRandomCharacterClass(req, res)
+      // delegate to handler that computes the rollResult and calls the correct private adders
+      this.#handleRandomSelection(req, res)
     } else {
       this.character.className = req.body.characterClass
 

@@ -11,7 +11,7 @@ import expressLayouts from 'express-ejs-layouts'
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { router } from './routes/router.js'
-import httpContext from 'express-http-context'
+import { setBaseURL } from './middleware/setBaseURL.js'
 import dotenv from 'dotenv'
 
 // Load environment variables from .env file
@@ -22,12 +22,9 @@ try {
   const app = express()
 
   // Set base URL
-  const baseUrl = process.env.BASE_URL || '/'
-  app.use(baseUrl, (req, res, next) => {
-    httpContext.set('baseUrl', baseUrl)
-    res.locals.baseUrl = baseUrl
-    next()
-  })
+  const baseURL = process.env.BASE_URL || '/'
+  console.log(`Base URL: ${baseURL}`)
+  app.use(setBaseURL(baseURL))
 
   // Middleware to parse URL-encoded bodies
   const directoryFullName = dirname(fileURLToPath(import.meta.url))
@@ -39,7 +36,7 @@ try {
   app.set('layout', path.join(directoryFullName, 'views', 'layouts', 'default'))
   app.set('layout extractScripts', true)
   app.set('layout extractStyles', true)
-  app.use(express.static(path.join(directoryFullName, 'public')))
+  app.use(express.static('public'))
   app.use(expressLayouts)
 
   // Set up routes

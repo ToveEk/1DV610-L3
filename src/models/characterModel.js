@@ -21,7 +21,3 @@ export class Character {
     this.abilityScores = abilityScores
   }
 }
-
-// används för att lagra informationen om den skapade karaktären genom flödet
-// sparas inte i databas eller liknande i denna version av appen
-// används för att visa sammanfattning av karaktären i summary view

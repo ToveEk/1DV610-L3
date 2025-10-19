@@ -13,6 +13,7 @@ import { fileURLToPath } from 'url'
 import { router } from './routes/router.js'
 import { setBaseURL } from './middleware/setBaseURL.js'
 import dotenv from 'dotenv'
+import { errorHandler } from './middleware/errorHandler.js'
 
 // Load environment variables from .env file
 dotenv.config()
@@ -41,6 +42,9 @@ try {
 
   // Set up routes
   app.use('/', router)
+
+  // Error handling middleware
+  app.use(errorHandler)
 
   // Start the server
   const PORT = process.env.PORT || 3000

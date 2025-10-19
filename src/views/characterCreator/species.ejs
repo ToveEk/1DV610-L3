@@ -1,34 +1,37 @@
-<h1>Pick a Species</h1>
+<div class="rectangle-div">
+    <h1>Pick a Species</h1>
 
-<form action="/character-species" method="POST">
-    <h2>Or roll a d8 to randomly select one!</h2>
-    <button type="submit" id="rollSpeciesButton" value="d8" name="diceNotation">d8</button>
-</form>
+    <form action="/character-species" method="POST">
+        <h2>Or roll a d8 to randomly select one!</h2>
+        <button type="submit" id="randomRollButton" value="d8" name="diceNotation">
+            <img src="<%= baseURL %>img/dice/d8.png" alt="An eight sided dice" class="dice-icon">
+        </button>
+    </form>
 
-<p id="speciesRollResult"></p>
+    <p id="speciesRollResult"></p>
 
-<form action="/character-species" method="POST">
-    <ul>
-        <% speciesList.forEach(species=> { %>
-            <li>
-                <h3>
-                    <%= species.name %>
-                </h3>
-                <p>
-                    <%= species.description %>
-                </p>
-                <p>
-                    <% for (const [key, values] of Object.entries(species.bonuses)) { %>
-                        <strong>
-                            <%= key %> +<%= values %>
-                        </strong><br>
-                        <% } %>
-                </p>
-                <button type="submit" class="select-species-button" name="characterSpecies"
-                    value="<%= species.name %>">Select <%= species.name %></button>
-            </li>
-            <% }) %>
-    </ul>
-</form>
-
-<!-- varje species ska få en bild med -->
+    <form action="/character-species" method="POST">
+        <div class="grid">
+            <% speciesList.forEach(species=> { %>
+                <div class="cards">
+                    <h3>
+                        <%= species.name %>
+                    </h3>
+                    <p>
+                        <%= species.description %>
+                    </p>
+                    <p class="bonuses">
+                        <% for (const [key, values] of Object.entries(species.bonuses)) { %>
+                            <strong>
+                                <%= key %> +<%= values %>
+                            </strong><br>
+                            <% } %>
+                    </p>
+                    <button type="submit" class="select-btn" name="characterSpecies"
+                        value="<%= species.name %>">
+                        Select <%= species.name %></button>
+                </div>
+                <% }) %>
+        </div>
+    </form>
+</div>

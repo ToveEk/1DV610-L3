@@ -1,30 +1,33 @@
-<h1>Pick a Class</h1>
-<h2>Or roll a d12 to randomly select one!</h2>
+<div class="rectangle-div">
 
-<form action="/character-class" method="POST">
-    <button type="submit" id="rollClassButton" value="d12" name="diceNotation">d12</button>
-</form>
+    <h1>Pick a Class</h1>
+    <h2>Or roll a d12 to randomly select one!</h2>
 
-<form action="/character-class" method="POST">
-    <ul>
-        <% classList.forEach(characterClass=> { %>
-            <li>
-                <h3>
-                    <%= characterClass.name %>
-                </h3>
-                <p>
-                    <%= characterClass.description %>
-                </p>
-                <p>
-                    Primary Ability: <%= characterClass.primaryAbility %>
-                </p>
-                <button type="submit" class="select-class-button" name="characterClass"
-                    value="<%= characterClass.name %>">Select
-                    <%= characterClass.name %>
-                </button>
-            </li>
-            <% }) %>
-    </ul>
-</form>
+    <form action="/character-class" method="POST">
+        <button type="submit" id="randomRollButton" value="d12" name="diceNotation">
+            <img src="<%= baseURL %>img/dice/d12.png" alt="A twelve sided dice" class="dice-icon">
+        </button>
+    </form>
 
-<!-- varje class ska få en bild -->
+    <form action="/character-class" method="POST">
+        <div class="grid">
+            <% classList.forEach(characterClass=> { %>
+                <div class="cards">
+                    <h3>
+                        <%= characterClass.name %>
+                    </h3>
+                    <p>
+                        <%= characterClass.description %>
+                    </p>
+                    <p>
+                        Primary Ability: <%= characterClass.primaryAbility %>
+                    </p>
+                    <button type="submit" class="select-btn" name="characterClass"
+                        value="<%= characterClass.name %>">Select
+                        <%= characterClass.name %>
+                    </button>
+                </div>
+                <% }) %>
+        </div>
+    </form>
+</div>

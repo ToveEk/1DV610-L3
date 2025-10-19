@@ -27,11 +27,14 @@ export class DiceController {
    * @returns {{message: string, value: number|null}} - The result message and numeric roll value (if available).
    */
   rollDice (diceNotation) {
-    const resultMessage = this.dice.startRolling(diceNotation)
-    // The Dice instance stores the numeric roll in `this.roll` when a roll occurs.
+    try {
+      const resultMessage = this.dice.startRolling(diceNotation)
 
-    this.rollResult = this.dice.roll
+      this.rollResult = this.dice.roll
 
-    return { message: resultMessage, value: this.rollResult }
+      return { message: resultMessage, value: this.rollResult }
+    } catch (error) {
+      throw new Error('Error rolling dice: ' + error.message)
+    }
   }
 }

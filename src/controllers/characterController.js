@@ -32,7 +32,11 @@ export class CharacterController {
    * @param {object} res - The response object
    */
   renderCharacterNamePage (req, res) {
-    res.render('characterCreator/name')
+    try {
+      res.render('characterCreator/name')
+    } catch (error) {
+      throw new Error('Error rendering character name page: ' + error.message)
+    }
   }
 
   /**
@@ -42,11 +46,15 @@ export class CharacterController {
    * @param {object} res - The response object
    */
   addCharacterName (req, res) {
-    this.character.name = req.body.characterName
+    try {
+      this.character.name = req.body.characterName
 
-    console.log('New character created: ', this.character)
+      console.log('New character created: ', this.character)
 
-    this.renderCharacterSpeciesPage(req, res)
+      this.renderCharacterSpeciesPage(req, res)
+    } catch (error) {
+      throw new Error('Error adding character name: ' + error.message)
+    }
   }
 
   /**
@@ -56,7 +64,11 @@ export class CharacterController {
    * @param {object} res - The response object
    */
   renderCharacterSpeciesPage (req, res) {
-    res.render('characterCreator/species', { speciesList: this.speciesData.getSpeciesList() })
+    try {
+      res.render('characterCreator/species', { speciesList: this.speciesData.getSpeciesList() })
+    } catch (error) {
+      throw new Error('Error rendering character species page: ' + error.message)
+    }
   }
 
   /**
@@ -66,17 +78,20 @@ export class CharacterController {
    * @param {object} res - The response object
    */
   addCharacterSpecies (req, res) {
-    console.log('Received species: ', req.body.characterSpecies)
+    try {
+      console.log('Received species: ', req.body.characterSpecies)
 
-    if (req.body.diceNotation) {
-      // delegate to handler that computes the rollResult and calls the correct private adders
-      this.#handleRandomSelection(req, res)
-    } else {
-      this.character.species = req.body.characterSpecies
+      if (req.body.diceNotation) {
+        this.#handleRandomSelection(req, res)
+      } else {
+        this.character.species = req.body.characterSpecies
 
-      console.log('Current character: ', this.character)
+        console.log('Current character: ', this.character)
 
-      this.renderCharacterClassPage(req, res)
+        this.renderCharacterClassPage(req, res)
+      }
+    } catch (error) {
+      throw new Error('Error adding character species: ' + error.message)
     }
   }
 
@@ -92,9 +107,7 @@ export class CharacterController {
     const speciesRandomRollValues = speciesList.map(species => species.randomRollValue)
 
     if (!speciesRandomRollValues.includes(rollResult)) {
-      console.log('Roll result doesn\'t match any species random roll value. Trying again...')
-      res.redirect('/character-species')
-      return
+      throw new Error('Roll result doesn\'t match any species random roll value.')
     } else {
       const selectedSpecies = speciesList.find(species => species.randomRollValue === rollResult)
       this.character.species = selectedSpecies.name
@@ -113,7 +126,11 @@ export class CharacterController {
    * @param {object} res - The response object
    */
   renderCharacterClassPage (req, res) {
-    res.render('characterCreator/classes', { classList: this.classData.getClassList() })
+    try {
+      res.render('characterCreator/classes', { classList: this.classData.getClassList() })
+    } catch (error) {
+      throw new Error('Error rendering character class page: ' + error.message)
+    }
   }
 
   /**
@@ -123,17 +140,20 @@ export class CharacterController {
    * @param {object} res - The response object
    */
   addCharacterClass (req, res) {
-    console.log('Received class: ', req.body.characterClass)
+    try {
+      console.log('Received class: ', req.body.characterClass)
 
-    if (req.body.diceNotation) {
-      // delegate to handler that computes the rollResult and calls the correct private adders
-      this.#handleRandomSelection(req, res)
-    } else {
-      this.character.className = req.body.characterClass
+      if (req.body.diceNotation) {
+        this.#handleRandomSelection(req, res)
+      } else {
+        this.character.className = req.body.characterClass
 
-      console.log('Current character: ', this.character)
+        console.log('Current character: ', this.character)
 
-      this.renderCharacterAbilitiesPage(req, res)
+        this.renderCharacterAbilitiesPage(req, res)
+      }
+    } catch (error) {
+      throw new Error('Error adding character class: ' + error.message)
     }
   }
 
@@ -149,9 +169,7 @@ export class CharacterController {
     const classRandomRollValues = classList.map(className => className.randomRollValue)
 
     if (!classRandomRollValues.includes(rollResult)) {
-      console.log('Roll result doesn\'t match any class random roll value. Trying again...')
-      res.redirect('/character-class')
-      return
+      throw new Error('Roll result doesn\'t match any class random roll value.')
     } else {
       const selectedClass = classList.find(className => className.randomRollValue === rollResult)
       this.character.className = selectedClass.name
@@ -170,7 +188,11 @@ export class CharacterController {
    * @param {object} res - The response object
    */
   renderCharacterAbilitiesPage (req, res) {
-    res.render('characterCreator/abilities')
+    try {
+      res.render('characterCreator/abilities')
+    } catch (error) {
+      throw new Error('Error rendering character abilities page: ' + error.message)
+    }
   }
 
   /**
@@ -180,7 +202,11 @@ export class CharacterController {
    * @param {object} res - The response object
    */
   addCharacterAbilities (req, res) {
-    // ta emot attributdata från formuläret
+    try {
+
+    } catch (error) {
+
+    }
   }
 
   /**
@@ -190,7 +216,11 @@ export class CharacterController {
    * @param {object} res - The response object
    */
   renderCharacterSummaryPage (req, res) {
-    res.render('characterCreator/summary')
+    try {
+      res.render('characterCreator/summary')
+    } catch (error) {
+      throw new Error('Error rendering character summary page: ' + error.message)
+    }
   }
 
   /**
@@ -213,8 +243,7 @@ export class CharacterController {
     } else if (diceNotation === 'd20') {
       // handle ability selection
     } else {
-      console.log('Invalid dice notation for random selection.')
-      res.redirect('/character-name')
+      throw new Error('Invalid dice notation for random selection.')
     }
   }
 }

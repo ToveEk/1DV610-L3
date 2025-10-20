@@ -1,0 +1,8 @@
+node_modules
+npm-debug.log
+.env
+.DS_Store
+.vscode
+.git
+public/scripts/dice-module
+# om du kopierat stora filer som inte ska in i image

@@ -12,7 +12,6 @@ Martin ogillar det han kallar *noise comments*. Jag förstår poängen, men kan 
 ## Kapitel 5: Formatting
 Jag håller helt med om att formatering är avgörande för kodens läsbarhet. Jag använder linting-verktyg, men glömmer ibland bort att även den vertikala radlängden spelar roll. Jag trycker ofta in `Alt+Z` när jag gör fönstret mindre för att slippa horisontell scroll, men inser att det inte är ett riktigt alternativ till att faktiskt formatera rätt. I övrigt försöker jag tänka mycket på att skapa luft i koden (med mellanrum där det passar) för att öka läsbarheten.
 
-
 ## Kapitel 6: Objects and Data Structures
 Jag har gjort en mapp för data med olika datastrukturer för bland annat arter och klasser. Dessa innehåller bara statisk information och ingen logik. Jag tycker att det här kapitlet lyfter en viktig balans mellan struktur och flexibilitet – något jag försöker bli mer medveten om i min egen kod.
 
@@ -30,4 +29,6 @@ Under denna laboration har jag funderat mer över hur jag utformar mina klasser.
 `characterController` är nästan vad Martin skulle kalla en "god class". Den hanterar det mesta av funktionaliteten, men vissa metoder hade kanske passat bättre i egna klasser. Jag är dock osäker på exakt hur, eftersom alla metoder hänger ihop med karaktärsbyggandets olika steg. Kanske hade metoderna som hanterar `characterSpecies` och `characterClass` kunnat delas upp i egna klasser, vilket i så fall hade ökat sammanhållningen i klasserna (*cohesion*).
 
 ## Kapitel 11: Systems
+I min `diceController` finns ett beroende till `dice`-modulen. Jag använder dock inte dependency injection här, eftersom instansen av `Dice` skapas direkt i konstruktorn istället för att skjutas in utifrån.  
 
+Jag upplever dependency injection som lite svårt att greppa i just det här sammanhanget. Efter att ha diskuterat det med AI förstår jag bättre att en router kan fungera som en slags “fabrik” (factory pattern) där beroenden kan injiceras när controllern skapas. Det känns dock fortfarande något abstrakt och komplicerat att implementera i mitt huvud.  

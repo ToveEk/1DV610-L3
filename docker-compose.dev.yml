@@ -11,7 +11,7 @@ services:
       - ./:/usr/src/app:cached
       - /usr/src/app/node_modules
     ports:
-      - "${HOST_PORT:-3001}:3000"
+      - "3000:3000"
     env_file:
       - .env
     environment:

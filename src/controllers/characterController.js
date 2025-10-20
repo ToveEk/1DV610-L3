@@ -203,9 +203,9 @@ export class CharacterController {
    */
   addCharacterAbilities (req, res) {
     try {
-
+      // TODO: implement ability functionality
     } catch (error) {
-
+      throw new Error('Error adding character abilities: ' + error.message)
     }
   }
 

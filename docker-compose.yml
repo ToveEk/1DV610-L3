@@ -9,7 +9,7 @@ services:
       - .env
     ports:
       # Map host port configurable via HOST_PORT env var (defaults to 3001)
-      - "${HOST_PORT:-3001}:3000"
+      - "3000:3000"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/"]
       interval: 30s

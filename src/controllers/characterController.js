@@ -241,7 +241,7 @@ export class CharacterController {
     } else if (diceNotation === 'd12') {
       this.#addRandomCharacterClass(rollResult, req, res)
     } else if (diceNotation === 'd20') {
-      // handle ability selection
+      // TODO: handle ability selection
     } else {
       throw new Error('Invalid dice notation for random selection.')
     }
